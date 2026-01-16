@@ -4,6 +4,52 @@ A 10-week journey from foundations to research experiments.
 
 ---
 
+## The Map
+
+```mermaid
+flowchart TB
+    subgraph START [" "]
+        YOU["🧭 YOU ARE HERE"]
+    end
+
+    subgraph FOUNDATIONS ["Week 0-1: Foundations"]
+        F["NumPy, PyTorch, LinAlg, Calc"]
+    end
+
+    subgraph BUILDING ["Weeks 2-4: Building Blocks"]
+        E["W2: Embeddings<br/>Word2Vec, Transformers"]
+        I["W3: Information Theory<br/>Entropy, MI, KL"]
+        C["W4: Clustering<br/>HDBSCAN, Emergence"]
+    end
+
+    subgraph PHYSICS ["Weeks 5-6: Physics"]
+        D["W5: Dynamics<br/>Attractors, Phase Space"]
+        V["W6: Variational<br/>Least Action, Euler-Lagrange"]
+    end
+
+    subgraph GEOMETRY ["Weeks 7-8: Structure"]
+        G["W7: Geometry<br/>Manifolds, Geodesics"]
+        GDL["W8: GDL<br/>GNNs, Message Passing"]
+    end
+
+    subgraph RESEARCH ["Weeks 9-10: Research"]
+        INT["Integration<br/>ConceptSpace Prototype"]
+        PUB["🎯 Publishable Artifact"]
+    end
+
+    YOU --> F
+    F --> E & I & C
+    E & I --> C
+    C --> D & V
+    D <--> V
+    D & V --> G & GDL
+    G <--> GDL
+    G & GDL --> INT
+    INT --> PUB
+```
+
+---
+
 ## The Big Picture
 
 ```
