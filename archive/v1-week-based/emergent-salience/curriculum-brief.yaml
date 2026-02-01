@@ -1,0 +1,121 @@
+# Curriculum Brief: Emergent Salience
+# RL-Backed Rule Hierarchies in AI Coding Assistants
+generated: 2025-01-16
+
+## Learner Profile
+identity:
+  anchors:
+    - systems programming (strong)
+    - linguistics (phonetics, phonology, grammar, semantics, pragmatics)
+    - dataclasses, enums, Python typing
+  learning_style: kinesthetic-visual
+  learning_flow:
+    - familiar anchor (linguistics metaphor)
+    - code it (hands-on implementation)
+    - visualize it (plots, animations)
+    - formalize (math/theory last)
+  failure_modes:
+    - traditional 6-month ramp-ups (won't happen)
+    - theory-first approaches (disengages)
+    - lack of immediate application (falls off)
+  strengths:
+    - creative application once concepts click
+    - teaching/explaining as consolidation
+    - systems thinking (sees the architecture)
+  neurodivergence:
+    type: AuDHD
+    implications:
+      - needs fast dopamine hits
+      - jump to interesting stuff immediately
+      - escape hatches required
+      - short sessions that build to hyperfocus
+
+## Destination
+outcomes:
+  - "Can formalize intuitive rule systems as contextual bandits"
+  - "Can implement Thompson Sampling with Beta posteriors"
+  - "Can design constitutional constraint systems (safe RL)"
+  - "Can measure learning dynamics via confidence velocity/acceleration"
+  - "Can explain why this formalization generalizes naive approaches"
+capstone:
+  artifact: "buildlog-template emergent salience implementation"
+  secondary: "arXiv-ready paper + publishable teaching content"
+  income_goal: true
+identity_shift: "I'm now the kind of person who can plan, write, and publish deep learning research seriously as a genuinely high-signal, rigorous member of the community."
+
+## Terrain
+perceived_gaps:
+  - Beta distributions
+  - Thompson Sampling
+  - Contextual bandits / LinUCB
+  - Regret bounds and proofs
+actual_gaps:
+  - Same as perceived (good self-awareness)
+  - Plus: cosine similarity refresh
+transfer_from:
+  phonetics_phonology:
+    - articulation → rule mechanics
+    - allophonic variation → context-dependent selection
+    - phonotactics → constitutional constraints
+    - prosody → salience/emphasis
+  grammar:
+    - syntax → rule structure
+    - morphology → rule composition
+    - grammaticalization → rule emergence
+  semantics:
+    - meaning as geometry → embeddings
+    - semantic fields → k-NN neighborhoods
+    - polysemy → context-dependent interpretation
+  pragmatics:
+    - appropriateness → context-aware selection
+    - implicature → what's unsaid but inferred
+emotional_blockers:
+  - "all of it is unfamiliar" (but not paralyzing)
+  - proofs feel like a doozy (defer, don't avoid)
+
+## Constraints
+time:
+  hours_per_week: 3.5  # 30 min/day × 7
+  total_weeks: 5-6
+  session_length: 20-45 min
+  session_type: short bursts → hyperfocus once habit forms
+  best_time: variable
+environment:
+  hardware: sufficient (GPU if needed)
+  stack: Python, torch, numpy, matplotlib (ready)
+  project: buildlog-template (target implementation)
+accountability:
+  primary: intrinsic intellectual drive
+  secondary: shipping public artifacts for income/brand
+  external: none required
+non_negotiables:
+  must_include:
+    - hands-on code every session
+    - visualization of every concept
+    - clear path to publishable artifacts
+    - linguistics anchors for new concepts
+  must_avoid:
+    - theory-first modules
+    - "6 months of foundations"
+    - unmarked rabbit holes (time traps)
+
+## Arc
+shape: capstone-driven + spiral
+theory_practice_ratio: 20/80
+capstone_driven: true
+spiral_revisits:
+  - Beta distributions (intro → Thompson Sampling → learning dynamics)
+  - Embeddings (refresh → centrality → LinUCB context)
+  - Regret (intuition → bounds → optional proof)
+escape_hatches: true
+optional_depth: true (marked "[OPTIONAL DEPTH]")
+dopamine_strategy:
+  - working code in first 10 minutes of each notebook
+  - "you just implemented X" celebration moments
+  - visible progress toward buildlog implementation
+  - linguistics "aha" connections throughout
+stuck_protocol:
+  1: novelty reset (switch to adjacent topic)
+  2: return later (mark and move on)
+  3: grind (only if 1 and 2 fail)
+win_condition: "write a notebook section, pass brutal professor review"

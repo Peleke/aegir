@@ -1,0 +1,51 @@
+# Unified Curriculum Brief — Aegir
+# Replaces: syllabus/emergent-salience/curriculum-brief.yaml (v1)
+
+learner:
+  name: Peleke
+  background:
+    - Senior software engineer (full-stack, systems)
+    - Building buildlog — agent learning infrastructure with Thompson Sampling bandits
+    - AuDHD — needs novelty/challenge hooks to fire the start engine; hyperfocus is a superpower when engaged
+    - Strong programming intuition, weaker formal math foundations
+    - Learns best by building first, reading theory second
+  strengths:
+    - Implementation speed
+    - Systems thinking
+    - Writing for technical audiences
+    - Pattern recognition across domains
+  gaps:
+    - Formal probability and statistics (filling via Arc 0)
+    - Linear algebra fluency (filling via Arc 1)
+    - Bayesian modeling beyond conjugate priors (filling via Arc 2)
+    - Differential geometry and information geometry (filling via Arc 3)
+
+destination:
+  technical:
+    - Design and run statistically rigorous experiments for agent learning systems
+    - Implement contextual bandits (LinUCB) and hierarchical Bayesian models
+    - Read and implement papers in geometric deep learning and information geometry
+    - Write production Haskell for physics simulations
+  publication:
+    - Maintain a tutorial series on experimental design for AI agent systems
+    - Publish technical pieces that reach HN front page and practitioner audiences
+    - Produce conference-track material on information geometry of rule learning (Arc 3-4)
+  product:
+    - Ship buildlog with rigorous statistical infrastructure (engine/statistics.py, engine/trials.py)
+    - Extend Agno BanditStore or buildlog hierarchical model with contextual features
+
+constraints:
+  - Arcs are completion-gated, not time-gated
+  - Every arc must produce at least 2 publishable artifacts
+  - Implementation targets must be real shipped code, not toy exercises
+  - AuDHD accommodations: short motivation hooks, visual maps, optional depth rabbit holes
+  - No week numbers — progress is measured by what you can do, not calendar time
+
+structure: arcs
+arc_count: 5
+arc_files:
+  - arc-0-probabilistic-foundations.md
+  - arc-1-linear-algebra-calculus.md
+  - arc-2-bayesian-inference-physics.md
+  - arc-3-geometry-deep-learning.md
+  - arc-4-research-frontier.md
