@@ -154,9 +154,14 @@ graph TD
 ## Resources
 
 ### Books
-- Blitzstein & Hwang, *Introduction to Probability* — Chapters 1–5 (Modules 0.2–0.4)
-- McElreath, *Statistical Rethinking* — Chapters 1–4 (Modules 0.3–0.5, continues into Arc 2)
-- Betancourt, *Towards a Principled Bayesian Workflow* — (Module 0.6)
+
+| Book | Author(s) | Chapters/Sections | Notes |
+|------|-----------|-------------------|-------|
+| *Think Bayes* (2nd ed.) | Downey | Ch 1-5, 18 | Bayesian foundations, computational approach (Modules 0.2-0.4, 0.7) |
+| *Think Stats* (2nd ed.) | Downey | Ch 1-4, 8-9 | Exploratory data analysis, hypothesis testing (Modules 0.2, 0.5-0.6) |
+| *Introduction to Probability* | Blitzstein & Hwang | Ch 1–5 | Probability foundations, counting, distributions (Modules 0.2–0.4) |
+| *Statistical Rethinking* (2nd ed.) | McElreath | Ch 1–4 | Generative models, Bayesian basics (Modules 0.3–0.5, continues into Arc 2) |
+| *Towards a Principled Bayesian Workflow* | Betancourt | Full | Workflow for experimental design and model checking (Module 0.6) |
 
 ### Videos
 - 3Blue1Brown, *Probability* playlist (Module 0.2)

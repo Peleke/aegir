@@ -398,6 +398,65 @@ distribution is conjugate to Bernoulli, so the posterior stays in the same
 family. This means updates are O(1) — just increment α or β.
 ```
 
+## Narrative Flow Principles
+
+These principles govern how concepts are introduced in every notebook. The goal is cognitive tension before framework, code before formula, recognition before naming.
+
+### 1. Story-first opening
+
+Every notebook opens with a concrete problem or incident, not abstract theory. The reader should feel cognitive tension ("this is wrong" or "how would I fix this?") before any framework is introduced. The opening should be a specific, real scenario — not a hypothetical.
+
+**Pattern**: Describe an incident → show the broken output → let the reader feel the wrongness → THEN begin building the fix.
+
+### 2. Code-before-formula rule
+
+Mathematical notation appears ONLY AFTER working code demonstrates the concept. The sequence is always:
+
+```
+compute it → verify it → name it
+```
+
+Never: "Here's the formula. Now let's implement it." Always: "Here's what we just computed. That has a name: [formula]."
+
+### 3. Single-example-first
+
+Introduce concepts with ONE concrete example before building the full dataset. The reader should understand the problem on one case before seeing ten. This prevents "wall of data" paralysis and lets the reader build intuition incrementally.
+
+**Pattern**: Show one failing case → build the fix for that one case → THEN expand to the full dataset.
+
+### 4. Discovery order over logical order
+
+Problems can appear in the order the reader discovers concepts, not the order they'd appear in a textbook. For example, vocabulary matching before building the test suite — because you need to feel the problem before constructing systematic tests.
+
+The reader's curiosity drives the sequence, not taxonomic completeness.
+
+### 5. Formula emergence
+
+Weighted combinations, probability rules, Bayes' theorem, etc. should feel *recognized*, not *introduced*. The reader has already been computing the thing; the formula just names what they built.
+
+**Pattern**: Build all components → combine them informally ("weighted average — you've done this since GPA") → THEN show the formula → reader thinks "oh, that's just what I already did."
+
+### 6. Companion text callouts
+
+Reference companion texts (ThinkBayes2, ThinkStats, Blitzstein, etc.) AFTER the reader has built something, as "go deeper" pointers. Never as prerequisites. Place them in callout blocks after verification cells.
+
+```markdown
+> **Go deeper**: You just built a weighted linear combination. For the probability
+> foundations underneath this: ThinkStats Ch 1-2 (exploratory data analysis),
+> ThinkBayes Ch 1 (computational Bayesian thinking), Blitzstein Ch 1-2 (formal
+> probability framework).
+```
+
+### 7. Transition pattern
+
+Use RECAP → PROBLEM RESTATEMENT → NEW APPROACH between sections. Never jump to a new concept without bridging from the previous one.
+
+**Pattern**:
+```markdown
+[What we just showed] works, but [specific failure case]. Entry N [describes the
+failure]. We need to check [new dimension].
+```
+
 ## Problem Framing Progression
 
 | Stage | Framing Style | Example |
@@ -443,6 +502,34 @@ Every notebook starts with a **narrative intro** that is:
 - Accurate and insightful
 - Humorous with personality
 - Sets up the problem scenario
+- **Story-first**: Opens with a concrete incident, not abstract framing
+
+Two patterns, depending on whether the module has a real incident to anchor on:
+
+#### Pattern A: War Story (preferred when a real incident exists)
+
+```markdown
+# ═══════════════════════════════════════════════════════════════════════════════
+# INTRO
+# ═══════════════════════════════════════════════════════════════════════════════
+
+## The Setup
+
+While configuring a RunPod GPU environment, you had one agent, one rule, and
+one evaluation function. The agent followed the rule perfectly — wrote a clean
+Protocol, then a concrete class implementing it. The evaluation function ran
+`if rule_text in agent_output`, got `False`, and logged a negative reward.
+
+The agent was punished for doing its job.
+
+**By the end of this notebook**, you'll have a working scorer that evaluates
+rule compliance through three signals — and can explain its scores in plain
+English.
+
+Let's see exactly what happened.
+```
+
+#### Pattern B: Scenario (when no war story is available)
 
 ```markdown
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -470,6 +557,8 @@ No pressure.
 
 Let's go.
 ```
+
+In both patterns, the intro ends with a concrete preview of what the reader will build and a forward-leaning transition ("Let's go." / "Let's see exactly what happened.").
 
 ### Outro Section
 

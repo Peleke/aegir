@@ -19,6 +19,7 @@ learner:
     - Linear algebra fluency (filling via Arc 1)
     - Bayesian modeling beyond conjugate priors (filling via Arc 2)
     - Differential geometry and information geometry (filling via Arc 3)
+    - LLM internals and architecture (filling via companion Arc LLM)
 
 destination:
   technical:
@@ -42,10 +43,11 @@ constraints:
   - No week numbers — progress is measured by what you can do, not calendar time
 
 structure: arcs
-arc_count: 5
+arc_count: 6
 arc_files:
   - arc-0-probabilistic-foundations.md
   - arc-1-linear-algebra-calculus.md
   - arc-2-bayesian-inference-physics.md
   - arc-3-geometry-deep-learning.md
   - arc-4-research-frontier.md
+  - arc-LLM-internals.md

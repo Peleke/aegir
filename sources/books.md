@@ -11,6 +11,8 @@ Resources organized by arc. Books may appear in multiple arcs where relevant. Se
 | *Introduction to Probability* | Blitzstein & Hwang | Ch. 1–5 | Probability foundations, counting, distributions |
 | *Statistical Rethinking* (2nd ed.) | McElreath | Ch. 1–4 | Generative models, Bayesian basics (continues into Arc 2) |
 | *Towards a Principled Bayesian Workflow* | Betancourt | Full | Workflow for experimental design and model checking |
+| *Think Bayes* (2nd ed.) | Downey | Ch 1-5, 18 | Bayesian foundations, computational approach (Modules 0.2-0.4, 0.7) |
+| *Think Stats* (2nd ed.) | Downey | Ch 1-4, 8-9 | Exploratory data analysis, hypothesis testing (Modules 0.2, 0.5-0.6) |
 
 ## Arc 1: Linear Algebra & Calculus
 
@@ -54,7 +56,7 @@ These books from the original week-based curriculum remain relevant:
 
 | Book | Author(s) | Arc Relevance |
 |------|-----------|---------------|
-| *Build a Large Language Model (From Scratch)* | Raschka | Arc 1 (embeddings context) |
+| *Build a Large Language Model (From Scratch)* | Raschka | Companion Arc LLM (primary text, all modules) |
 | *Elements of Information Theory* | Cover & Thomas | Arc 0 (information-theoretic perspective on entropy) |
 | *Nonlinear Dynamics and Chaos* | Strogatz | Arc 2 (dynamical systems intuition) |
 | *Calculus of Variations* | Gelfand & Fomin | Arc 2 (variational principles) |
