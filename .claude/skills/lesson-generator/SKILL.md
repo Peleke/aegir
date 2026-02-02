@@ -1,6 +1,6 @@
 ---
 name: lesson-generator
-description: Generate and revise curricula, syllabi, and Jupyter notebook lessons at any zoom level. Triggers on "design a curriculum", "I want to learn", "create a course", "generate week/module syllabus", "create lesson/notebook", "update/revise [artifact]", or when working with educational content. Handles the full pipeline from elicitation interview through course map, week syllabi, and individual notebooks — plus targeted revisions with cascade awareness.
+description: Generate and revise curricula, arc syllabi, and Jupyter notebook lessons at any zoom level. Triggers on "design a curriculum", "I want to learn", "create a course", "generate arc/module syllabus", "create lesson/notebook", "update/revise [artifact]", or when working with educational content. Handles the full pipeline from elicitation interview through course map, arc syllabi, and individual module notebooks — plus targeted revisions with cascade awareness.
 ---
 
 # Lesson Generator
@@ -8,11 +8,11 @@ description: Generate and revise curricula, syllabi, and Jupyter notebook lesson
 A recursive curriculum generation and revision system that operates at three zoom levels:
 
 ```
-Course (elicitation → curriculum brief → week map)
+Course (elicitation → curriculum brief → arc map)
     ↓
-Week (theme + context → day breakdown → milestone)
+Arc (theme + context → module breakdown → publication checkpoints)
     ↓
-Notebook (spec → four-layer pedagogy → executable lesson)
+Module Lesson (spec → belt system → executable notebook)
 
 + Revision Mode (update any artifact with cascade awareness)
 ```
@@ -42,15 +42,16 @@ Detect the appropriate level from user input:
 - "Create a course on..."
 - "Help me build a learning path for..."
 
-**Week level** — reads course context:
-- "Generate week 3 syllabus"
-- "Break down the embeddings module"
+**Arc level** — reads course context:
+- "Generate arc 2 syllabus"
+- "Break down the Bayesian inference arc"
 - "Create the syllabus for [topic]"
 
-**Notebook level** — reads week context:
-- "Generate the [notebook-name] notebook"
+**Module level** — reads arc context:
+- "Generate the module 0.1 notebook"
 - "Create a lesson on [topic]"
 - "Turn this outline into a notebook"
+- "Generate arc 0, module 1 lesson"
 
 ---
 
@@ -113,14 +114,14 @@ Discover what they don't know they don't know:
 ### Dimension 4: CONSTRAINTS — What's the box?
 
 **Questions to ask:**
-- Time: How many hours/week? For how many weeks?
+- Time: How many hours/week? Any hard deadlines?
 - Energy: When are you sharpest? Long blocks or short bursts?
 - Environment: What tools do you have? (GPU, specific stack)
 - Accountability: Self-paced? Mentor? Cohort? Deadline?
 - Non-negotiables: Must include? Must avoid?
 
 **Extract:**
-- Time budget (hours/week × weeks)
+- Time budget (hours/week, session length)
 - Energy pattern
 - Hard constraints
 
@@ -132,11 +133,13 @@ Discover what they don't know they don't know:
 - How much "why" vs "how"? (theory vs practical ratio)
 - When stuck, push through or skip and return later?
 - How do you feel about optional "rabbit hole" sections?
+- What do you want to publish along the way? (forces articulation)
 
 **Extract:**
 - Curriculum shape (linear/spiral/modular)
 - Depth preference
 - Escape hatch strategy
+- Publication goals
 
 ## Elicitation Style
 
@@ -154,48 +157,54 @@ After elicitation, produce this structured artifact:
 # Curriculum Brief: [Title]
 generated: [date]
 
-## Learner Profile
-identity:
-  anchors: [list of prior knowledge to connect to]
-  learning_style: [visual-first | kinesthetic | formal | mixed]
-  failure_modes: [what causes disengagement]
-  strengths: [what they're good at that we can leverage]
+learner_profile:
+  identity:
+    anchors: [list of prior knowledge to connect to]
+    learning_style: [visual-first | kinesthetic | formal | mixed]
+    failure_modes: [what causes disengagement]
+    strengths: [what they're good at that we can leverage]
+    neurodivergence:
+      type: [if disclosed]
+      implications: [accommodations]
 
-## Destination
-outcomes:
-  - "Can [specific capability 1]"
-  - "Can [specific capability 2]"
-  - "Can [specific capability 3]"
-capstone: "[concrete project/artifact description]"
-identity_shift: "I am someone who can [new identity]"
+destination:
+  outcomes:
+    - "Can [specific capability 1]"
+    - "Can [specific capability 2]"
+    - "Can [specific capability 3]"
+  capstone: "[concrete project/artifact description]"
+  identity_shift: "I am someone who can [new identity]"
+  publication:
+    - "[what they want to publish, for whom]"
 
-## Terrain
-perceived_gaps: [what they think they need to learn]
-actual_gaps: [what they actually need, based on destination]
-transfer_from: [adjacent knowledge to leverage]
-emotional_blockers: [fears, intimidation points]
+terrain:
+  perceived_gaps: [what they think they need to learn]
+  actual_gaps: [what they actually need, based on destination]
+  transfer_from: [adjacent knowledge to leverage]
+  emotional_blockers: [fears, intimidation points]
 
-## Constraints
-time:
-  hours_per_week: [number]
-  total_weeks: [number]
-  session_length: [preferred session duration]
-  best_time: [morning/evening/variable]
-environment:
-  hardware: [GPU, RAM, etc.]
-  stack: [languages, frameworks, tools]
-accountability: [self-paced | mentor | cohort | deadline]
-non_negotiables:
-  must_include: [list]
-  must_avoid: [list]
+constraints:
+  time:
+    hours_per_week: [number]
+    session_length: [preferred session duration]
+    best_time: [morning/evening/variable]
+  environment:
+    hardware: [GPU, RAM, etc.]
+    stack: [languages, frameworks, tools]
+  accountability: [self-paced | mentor | cohort | deadline]
+  non_negotiables:
+    must_include: [list]
+    must_avoid: [list]
 
-## Arc
-shape: [linear | spiral | modular]
-theory_practice_ratio: [e.g., 30/70]
-capstone_driven: [true | false]
-escape_hatches: [true | false]
-optional_depth: [true | false]
-dopamine_strategy: [how to maintain engagement]
+arc:
+  shape: [linear | spiral | modular]
+  theory_practice_ratio: [e.g., 20/80]
+  capstone_driven: [true | false]
+  escape_hatches: [true | false]
+  optional_depth: [true | false]
+  dopamine_strategy: [how to maintain engagement]
+
+structure: arcs
 ```
 
 ## From Brief to Course Map
@@ -203,377 +212,588 @@ dopamine_strategy: [how to maintain engagement]
 Analyze the brief to produce the course structure:
 
 1. **Gap Analysis**: Compare current state (anchors) to destination (outcomes)
-2. **Dependency Mapping**: What must come before what?
-3. **Time Fitting**: Given constraints, what's the right scope?
-4. **Arc Application**: Apply the chosen shape (linear/spiral/modular)
-5. **Milestone Placement**: Where are the dopamine hits?
+2. **Dependency Mapping**: What must come before what? (arcs can run concurrently if independent)
+3. **Scope Fitting**: Given constraints, what's the right number of arcs?
+4. **Arc Application**: Apply the chosen shape — arcs are completion-gated, not time-gated
+5. **Publication Placement**: Where are the publishable artifacts?
+6. **Implementation Targets**: What real code ships from each arc?
 
 ### Course Map Format (README.md for syllabus/)
 
 ```markdown
 # [Course Title]
 
-[One-paragraph vision statement]
-
----
+> [Design principles, AuDHD optimizations if applicable]
 
 ## The Map
 
-[Mermaid flowchart showing week dependencies]
+[Mermaid flowchart showing arc dependencies — arcs can be concurrent]
 
----
+## Arc Overview
 
-## The Big Picture
-
-[ASCII or table showing the arc]
-
----
-
-## Weekly Overview
-
-| Week | Theme | Key Milestone | Notebook Count |
-|------|-------|---------------|----------------|
-| 0 | Onboarding | Environment works | 1 |
-| 1 | [Theme] | [Concrete deliverable] | [N] |
+| Arc | Title | Prerequisites | Key Deliverables |
+|-----|-------|--------------|-----------------|
+| 0 | [Title] | None | [deliverables] |
+| 1 | [Title] | None | [deliverables] |
+| 2 | [Title] | 0, 1 | [deliverables] |
 | ... | ... | ... | ... |
 
-**Total**: ~[N] notebooks, ~[N] days at [session length]
+## Publication Cadence
 
----
+[Types of publications, audiences, cadence]
 
-## Design Principles
+## Lineage
 
-[ADHD optimizations, escape hatches, pacing notes based on learner profile]
-
----
-
-## Capstone Track
-
-[How the capstone builds throughout the course]
-
----
-
-## Prerequisites Check
-
-[What they need before starting]
-
----
-
-## Week Guides
-
-| Week | Guide |
-|------|-------|
-| 0 | [Onboarding](week-00-onboarding.md) |
-| 1 | [Theme](week-01-theme.md) |
-| ... | ... |
+[What prior curriculum versions this absorbs, if any]
 ```
 
 ---
 
-# ZOOM LEVEL 2: Week Syllabus
+# ZOOM LEVEL 2: Arc Syllabus
 
 ## Input Context
 
 Read the course-level context:
 - Curriculum brief (learner profile, constraints, arc)
-- Course map (where this week fits, dependencies)
-- Adjacent weeks (what comes before/after)
+- Course map (where this arc fits, dependencies)
+- Adjacent arcs (what comes before/after, what can run concurrently)
 
-## Week Syllabus Structure
+## Arc Syllabus Structure
+
+Each arc file follows this template:
 
 ```markdown
-# Week N: [Title]
+# Arc N: Title
 
-**Goal**: [One-sentence outcome — what they can DO after this week]
+**Destination**: [what you can do when this arc is complete]
+**Prerequisites**: [which arcs must be complete]
+**Estimated sessions**: [range, not calendar time]
 
-**Time**: [X days × Y min = Z hours]
+## The Map (mermaid flowchart of modules within arc)
 
-**Milestone**: [Concrete deliverable they'll produce]
+## Modules
+### Module N.1: Title
 
----
+> *[Absorbed from ... if consolidating prior content]*
 
-## Overview
+- **Motivation** (visual/scenario/analogy — fires the start engine)
+- **Implementation** (build it in code — what specifically)
+- **Theory backfill** (read the math that explains what you built)
+- **Exercises** (at least 1 designed to produce a publishable artifact, marked [PUBLISH])
+- **[OPTIONAL DEPTH]** rabbit holes (for hyperfocus sessions)
 
-| Day | Notebook | Time | Topic |
-|-----|----------|------|-------|
-| N.1 | [filename] | [X min] | [Brief description] |
-| N.2 | [filename] | [X min] | [Brief description] |
-| ... | ... | ... | ... |
+### Module N.2: Title
+[repeat pattern]
 
----
+## Publication Checkpoints
 
-## Day N.1-N.2: [Section Title]
+| # | Artifact | Type | Audience | Template |
+|---|----------|------|----------|----------|
+| 1 | [title] | [tweet/tutorial/code/HN post/research] | [who] | [which exercise → edit → publish] |
 
-### Learning Objectives
-- [ ] [Concrete, assessable objective]
-- [ ] [Concrete, assessable objective]
+## Implementation Targets
+- **buildlog**: [specific files/features]
+- **other**: [if applicable]
 
-### Key Concepts
-
-[High-level overview of concepts — detail goes in notebooks]
-
-### Exercises
-
-1. [Exercise with clear deliverable]
-2. [Exercise with clear deliverable]
-
-### Resources
-- [Links]
-- [Wiki references]
-
----
-
-[Repeat for each day grouping]
-
----
-
-## Week N Milestone: [Title]
-
-[Code example or description of the milestone deliverable]
-
-**Success criteria**: [How to know it works]
-
----
-
-## Why This Week Matters
-
-[Connection to overall arc, what it enables later]
-
----
-
-## Reflection Questions
-
-1. [Conceptual question]
-2. [Conceptual question]
-
----
-
-## Week N Complete!
-
-[Summary, bridge to next week]
-
-→ [Week N+1: Title](week-N+1-file.md)
+## Resources (books, videos, links — specific chapters/sections per module)
 ```
 
-## Week Design Principles
+## Arc Design Principles
 
-- **Milestone-driven**: Every week ends with something tangible
-- **Front-load wins**: Put engaging content early in the week
-- **Escape hatches**: Mark optional depth sections
-- **Connections**: Explicitly link to prior and future weeks
-- **Realistic timing**: Account for setup, debugging, rabbit holes
+- **Completion-gated**: An arc is done when you can do the thing, not when time runs out
+- **Modules are sequential within an arc**: Module N.2 depends on N.1
+- **Build first, theory second**: Every module starts with implementation
+- **Publication as forcing function**: At least 2 publication checkpoints per arc
+- **Implementation targets are real**: Exercises produce code that ships
+- **Motivation hooks**: Each module starts with something that fires the start engine
+- **Concurrency**: Independent arcs (e.g., Arc 0 and Arc 1) can run in parallel
 
 ---
 
-# ZOOM LEVEL 3: Notebook Generation
+# ZOOM LEVEL 3: Module Lesson (Notebook Generation)
+
+## The Belt System
+
+Notebooks are organized into **belts** that represent depth levels. Each belt is additive — higher belts include everything from lower belts.
+
+| Belt | Layers | Content | Self-Contained? |
+|------|--------|---------|-----------------|
+| **Core** | L0 + L1 + L2 | Problem + Intuition + Code | Yes |
+| **Depth** | L3 + L4 | CS Speak + Math Formalism | Requires Core |
+
+**File structure**:
+```
+notebooks/
+  arc-0-probabilistic-foundations/
+    module-0.1-taste-demo/
+      0.1-taste-demo-core.ipynb       # L0 + L1 + L2 (main path)
+      0.1-taste-demo-depth.ipynb      # L3 + L4 (extension)
+      hero-intro.png
+    module-0.2-probability-counting/
+      0.2-probability-counting-core.ipynb
+      0.2-probability-counting-depth.ipynb
+  supplements/                         # Generated on-demand
+    prereq-bayes-theorem.ipynb
+    prereq-big-o-notation.ipynb
+```
+
+### Layer Definitions
+
+| Layer | Name | Content | Voice |
+|-------|------|---------|-------|
+| **L0** | Problem/Motivation | Real scenario, why this matters | Narrative, engaging |
+| **L1** | Intuition | Analogies, anchors, visual metaphors | Peer ("Let's...") |
+| **L2** | Code + Viz | Runnable demos, plots, exercises | Peer ("Let's...") |
+| **L3** | CS Speak | Terminology, complexity, patterns | Internal monologue |
+| **L4** | Math Formalism | Definitions, theorems, proofs | Internal monologue |
 
 ## Input Context
 
-Read the week-level context:
-- Week syllabus (day spec, objectives, exercises)
+Read the arc-level context:
+- Arc syllabus (module spec, objectives, exercises, implementation targets)
 - Learner profile (from curriculum brief)
-- Position in arc (early = more scaffolding, late = more independence)
+- Position in arc (early modules = more scaffolding, late = more independence)
+- Publication checkpoints (is this module's exercise a publication draft?)
 
-## Four-Layer Pedagogy
+## Cumulative Problem Thread
 
-Every concept explanation follows this progression, from concrete to abstract:
+**Critical**: Problems should build on each other. Each problem uses output from the previous problem.
 
-### Layer 1: Intuition (Spatiotemporal Analogies)
-
-Start with physical, visual, or everyday analogies. Make it tangible.
-
-```markdown
-## What is a Gradient?
-
-Imagine standing on a hillside in thick fog. You can't see the valley below,
-but you can feel which way is steepest under your feet. That direction of
-steepest descent is the gradient. If you repeatedly take small steps downhill,
-you'll eventually reach the bottom—that's gradient descent.
-
-The gradient is a compass that always points uphill. We follow it backwards.
+**Good**:
+```
+Problem 1: Load the data → creates `data` variable
+Problem 2: Extract hotel info → uses `data`, creates `hotels`
+Problem 3: Filter by amenity → uses `hotels`, creates `filtered`
+Problem 4: Export to CSV → uses `filtered`
 ```
 
-**Guidelines:**
-- Use physical metaphors (hills, water, gravity, motion)
-- Reference things they can visualize or have felt
-- Connect to prior knowledge anchors from learner profile
-- Keep it concrete — no formulas yet
+**Bad**:
+```
+Problem 1: Unrelated tensor exercise
+Problem 2: Different unrelated exercise
+Problem 3: Another standalone exercise
+```
 
-### Layer 2: Code + Visualization
+When designing notebooks, spend time crafting a compelling problem thread that:
+1. Has a real, relatable scenario
+2. Builds cumulatively
+3. Ends with a tangible artifact
+4. Connects to the arc's implementation targets where possible
 
-Runnable demo that makes the concept visible.
+## Voice & Tone
+
+### Core Notebooks (L0-L2): Peer Voice
+```markdown
+Let's figure out how to track belief about each rule. We need something that
+can represent "I'm 80% confident this rule helps" and update as we get feedback.
+
+Here's the situation: you have 20 rules, and users keep reinforcing or
+contradicting them. How do we keep score?
+```
+
+### Depth Notebooks (L3-L4): Internal Monologue Voice
+```markdown
+I need a distribution that updates cleanly with binary feedback. The Beta
+distribution is conjugate to Bernoulli, so the posterior stays in the same
+family. This means updates are O(1) — just increment α or β.
+```
+
+## Narrative Flow Principles
+
+These principles govern how concepts are introduced in every notebook. The goal is cognitive tension before framework, code before formula, recognition before naming.
+
+### 1. Story-first opening
+
+Every notebook opens with a concrete problem or incident, not abstract theory. The reader should feel cognitive tension ("this is wrong" or "how would I fix this?") before any framework is introduced. The opening should be a specific, real scenario — not a hypothetical.
+
+**Pattern**: Describe an incident → show the broken output → let the reader feel the wrongness → THEN begin building the fix.
+
+### 2. Code-before-formula rule
+
+Mathematical notation appears ONLY AFTER working code demonstrates the concept. The sequence is always:
+
+```
+compute it → verify it → name it
+```
+
+Never: "Here's the formula. Now let's implement it." Always: "Here's what we just computed. That has a name: [formula]."
+
+### 3. Single-example-first
+
+Introduce concepts with ONE concrete example before building the full dataset. The reader should understand the problem on one case before seeing ten. This prevents "wall of data" paralysis and lets the reader build intuition incrementally.
+
+**Pattern**: Show one failing case → build the fix for that one case → THEN expand to the full dataset.
+
+### 4. Discovery order over logical order
+
+Problems can appear in the order the reader discovers concepts, not the order they'd appear in a textbook. For example, vocabulary matching before building the test suite — because you need to feel the problem before constructing systematic tests.
+
+The reader's curiosity drives the sequence, not taxonomic completeness.
+
+### 5. Formula emergence
+
+Weighted combinations, probability rules, Bayes' theorem, etc. should feel *recognized*, not *introduced*. The reader has already been computing the thing; the formula just names what they built.
+
+**Pattern**: Build all components → combine them informally ("weighted average — you've done this since GPA") → THEN show the formula → reader thinks "oh, that's just what I already did."
+
+### 6. Companion text callouts
+
+Reference companion texts (ThinkBayes2, ThinkStats, Blitzstein, etc.) AFTER the reader has built something, as "go deeper" pointers. Never as prerequisites. Place them in callout blocks after verification cells.
+
+```markdown
+> **Go deeper**: You just built a weighted linear combination. For the probability
+> foundations underneath this: ThinkStats Ch 1-2 (exploratory data analysis),
+> ThinkBayes Ch 1 (computational Bayesian thinking), Blitzstein Ch 1-2 (formal
+> probability framework).
+```
+
+### 7. Transition pattern
+
+Use RECAP → PROBLEM RESTATEMENT → NEW APPROACH between sections. Never jump to a new concept without bridging from the previous one.
+
+**Pattern**:
+```markdown
+[What we just showed] works, but [specific failure case]. Entry N [describes the
+failure]. We need to check [new dimension].
+```
+
+## Problem Framing Progression
+
+| Stage | Framing Style | Example |
+|-------|---------------|---------|
+| Early modules | Explicit step-by-step | "Your task is to: 1. Create X, 2. Call Y, 3. Return Z" |
+| Mid modules | Goal + hints | "Extract the hotel info. Hint: each entry has a `hotel` key" |
+| Late modules | Goal only | "Create `pruned_data` with only the relevant fields" |
+
+## Visual Markers (No Emoji)
+
+### Section Headers
+```python
+# ═══════════════════════════════════════════════════════════════════════════════
+# LAYER 0: THE PROBLEM
+# ═══════════════════════════════════════════════════════════════════════════════
+```
+
+### Problem Headers
+```python
+# -------------------------------------------------------------------------------
+# Problem 1: Load and Explore the Data
+# -------------------------------------------------------------------------------
+```
+
+### Code Cells
+```python
+# --- YOUR CODE BELOW ---
+
+# >>> SOLUTION (collapsed by default)
+```
+
+### Progress Markers (Minimal)
+```python
+# Tests pass. Moving on.
+```
+
+## Narrative Bookends
+
+### Intro Section
+
+Every notebook starts with a **narrative intro** that is:
+- Fun and engaging
+- Accurate and insightful
+- Humorous with personality
+- Sets up the problem scenario
+- **Story-first**: Opens with a concrete incident, not abstract framing
+
+Two patterns, depending on whether the module has a real incident to anchor on:
+
+#### Pattern A: War Story (preferred when a real incident exists)
+
+```markdown
+# ═══════════════════════════════════════════════════════════════════════════════
+# INTRO
+# ═══════════════════════════════════════════════════════════════════════════════
+
+## The Setup
+
+While configuring a RunPod GPU environment, you had one agent, one rule, and
+one evaluation function. The agent followed the rule perfectly — wrote a clean
+Protocol, then a concrete class implementing it. The evaluation function ran
+`if rule_text in agent_output`, got `False`, and logged a negative reward.
+
+The agent was punished for doing its job.
+
+**By the end of this notebook**, you'll have a working scorer that evaluates
+rule compliance through three signals — and can explain its scores in plain
+English.
+
+Let's see exactly what happened.
+```
+
+#### Pattern B: Scenario (when no war story is available)
+
+```markdown
+# ═══════════════════════════════════════════════════════════════════════════════
+# INTRO
+# ═══════════════════════════════════════════════════════════════════════════════
+
+[HERO IMAGE: Generate with ComfyUI - something visually striking related to topic]
+
+## The Setup
+
+You're the lead data scientist at a hotel booking startup. Your CEO bursts in:
+"We need to find family-friendly hotels. Yesterday."
+
+You have a JSON dump from the Amadeus API. 200 hotels. Nested data. Your mission:
+extract the ones with pools, babysitting, or kids' clubs, and get them into a
+clean CSV before the 4pm investor demo.
+
+No pressure.
+
+**By the end of this notebook**, you'll have a working data pipeline that:
+- Loads messy JSON
+- Extracts relevant fields
+- Filters by criteria
+- Exports clean CSV
+
+Let's go.
+```
+
+In both patterns, the intro ends with a concrete preview of what the reader will build and a forward-leaning transition ("Let's go." / "Let's see exactly what happened.").
+
+### Outro Section
+
+Every notebook ends with a **narrative outro** that:
+- Summarizes what was learned
+- Celebrates the achievement (without being corny)
+- Bridges to the next module
+- Flags if this module's output is a publication draft
+
+```markdown
+# ═══════════════════════════════════════════════════════════════════════════════
+# OUTRO
+# ═══════════════════════════════════════════════════════════════════════════════
+
+## What Just Happened
+
+You took a gnarly JSON blob and turned it into a clean CSV. Along the way, you:
+- Navigated nested dictionaries without losing your mind
+- Used list comprehensions like a civilized person
+- Applied boolean filtering to extract exactly what you needed
+
+## Publication Note
+
+Exercise 3 from this module is a draft for the "contains check takedown" post.
+Run an edit pass and it's ready to publish.
+
+## What's Next
+
+In Module 0.2, we build the probability foundations that make this scoring
+rigorous instead of hand-wavy.
+
+→ [Module 0.2: Probability & Counting](../module-0.2-probability-counting/0.2-probability-counting-core.ipynb)
+```
+
+### Hero Images
+
+Use ComfyUI to generate hero images for intro/outro sections:
 
 ```python
+# Example prompt for ComfyUI
+mcp__comfyui__imagine(
+    description="A determined data scientist surrounded by floating JSON brackets and hotel icons, dramatic lighting, digital art style",
+    output_path="/path/to/notebooks/arc-0/module-0.1/hero-intro.png",
+    style="digital_art",
+    quality="standard"
+)
+```
+
+## Core Notebook Structure
+
+```python
+# Cell 1: Metadata (markdown)
+"""
+# Module 0.1: [Title] — Core
+
+**Arc 0: Probabilistic Foundations** | Module 1 of 8
+
+**Prerequisites**: [Prior modules or "None"]
+
+**Time**: ~[X] minutes
+
+**Implementation target**: [what this builds toward in real code, if applicable]
+
+---
+
+## Learning Objectives
+
+By the end of this notebook, you will be able to:
+
+- [ ] [Objective 1]
+- [ ] [Objective 2]
+- [ ] [Objective 3]
+"""
+
+# Cell 2: Imports (code)
+"""
+# Provided Code - Do NOT Edit
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Create a simple 2D landscape
-x = np.linspace(-3, 3, 100)
-y = np.linspace(-3, 3, 100)
-X, Y = np.meshgrid(x, y)
-Z = X**2 + Y**2  # Simple bowl
+plt.style.use('seaborn-v0_8-whitegrid')
+%matplotlib inline
+"""
 
-# Compute gradient at a point
-point = np.array([2.0, 1.5])
-gradient = 2 * point  # For f(x,y) = x² + y², ∇f = [2x, 2y]
+# Cell 3+: Intro section (markdown + optional hero image)
 
-# Visualize
-plt.figure(figsize=(10, 8))
-plt.contour(X, Y, Z, levels=20, cmap='viridis')
-plt.quiver(point[0], point[1], -gradient[0], -gradient[1],
-           color='red', scale=20, label='Negative gradient')
-plt.scatter(*point, color='red', s=100, zorder=5)
-plt.colorbar(label='f(x,y)')
-plt.legend()
-plt.title('Gradient Descent Direction')
-plt.show()
+# Cell N: Layer 0 - Problem/Motivation (markdown)
+
+# Cell N+1: Layer 1 - Intuition (markdown)
+
+# Cell N+2: Layer 2 - Code + Viz (code cells with problems)
+# Each problem:
+#   - Problem header (markdown)
+#   - Provided code cell (if needed)
+#   - Student code cell with TODO
+#   - Solution cell (collapsed)
+#   - Expected output / assertions
+
+# Cell M: Exercises section
+# Mark publication-track exercises with [PUBLISH]
+
+# Cell M+1: Outro section (markdown)
+
+# Cell M+2: Resources (markdown — from arc's Resources section)
+
+# Cell M+3: Next Up (markdown — link to next module)
 ```
 
-**Guidelines:**
-- Code must run without errors
-- Always visualize when possible
-- Print intermediate values to show what's happening
-- Keep cells focused — one concept per visualization
+## Depth Notebook Structure
 
-### Layer 3: CS Speak
+Depth notebooks assume the student has completed the Core notebook.
 
-Terminology, complexity, algorithmic patterns, engineering considerations.
+```python
+# Cell 1: Metadata (markdown)
+"""
+# Module 0.1: [Title] — Depth
 
+**Extends**: [0.1-topic-core.ipynb](0.1-topic-core.ipynb)
+
+**Belt**: Depth (CS Speak + Math Formalism)
+
+---
+
+## Prerequisites
+
+This notebook assumes familiarity with:
+
+### For CS Speak (L3):
+- [ ] Big-O notation (O(1), O(n), O(log n))
+- [ ] Basic data structure tradeoffs
+
+### For Math Formalism (L4):
+- [ ] [Specific prereq 1]
+- [ ] [Specific prereq 2]
+
+**Gap detected?** Ask:
+> "Generate prereq supplement: [topic]"
+
+I'll create a focused notebook that fills just that gap.
+"""
+
+# Cell 2: Layer 3 - CS Speak
+# Terminology, complexity, engineering considerations
+# Internal monologue voice
+
+# Cell 3: Layer 4 - Math Formalism
+# Definitions, theorems, proofs
+# Confident "let's fix that" energy for proofs
+
+# Inline prereq callouts where needed:
+"""
+> **PREREQ CHECK: Bayes' Theorem**
+> This section assumes you can apply: posterior ∝ prior × likelihood
+> If shaky, ask: "Generate prereq supplement: Bayes' theorem"
+"""
+```
+
+## Exercise Cell Pattern
+
+```python
+# -------------------------------------------------------------------------------
+# Problem N: [Title]
+# -------------------------------------------------------------------------------
+
+"""
+[Description of what to do - explicit for early modules, goal-only for late]
+
+Your task:
+- [Step 1]
+- [Step 2]
+- [Step 3]
+
+Hint: [Optional hint for early modules]
+"""
+
+# Provided Code - Do NOT Edit
+provided_variable = [1, 2, 3, 4, 5]
+
+# --- YOUR CODE BELOW ---
+def solve_problem_n():
+    """
+    [Clear docstring with spec]
+    """
+    # TODO: Implement
+    pass
+
+
+# >>> SOLUTION (collapsed by default)
+# ┌─────────────────────────────────────────────────────────────────────────────
+# │ def solve_problem_n():
+# │     """Solution implementation"""
+# │     return [x * 2 for x in provided_variable]
+# └─────────────────────────────────────────────────────────────────────────────
+
+
+# Test
+result = solve_problem_n()
+expected = [2, 4, 6, 8, 10]
+assert result == expected, f"Expected {expected}, got {result}"
+# Tests pass. Moving on.
+```
+
+## Prereq Supplement Generation
+
+When a student requests a prereq supplement:
+
+1. **Elicit current level**: "What do you know about X? Have you seen Y notation?"
+
+2. **Generate focused supplement** at appropriate belt:
+   - Core-level (code-focused) for practical understanding
+   - Depth-level (math-focused) for rigorous understanding
+
+3. **Link back**: End with "Now return to [notebook], you're ready for [section]"
+
+Supplement structure:
 ```markdown
-## Computational Perspective
+# SUPPLEMENT: [Topic] ([Belt] Belt)
 
-**Gradient descent** is a first-order iterative optimization algorithm.
-Given a differentiable function f, the update rule is:
+**Generated for**: [Source notebook] → [Section] prereq
+**Time**: ~[X] minutes
 
-    x_{t+1} = x_t - η · ∇f(x_t)
+## Why You're Here
 
-where η is the **learning rate** (step size).
+You hit a prereq gap. This supplement teaches [topic] at the [belt] level.
 
-**Time complexity**: O(n) per iteration for n parameters
-**Space complexity**: O(n) to store the gradient
+## [Content organized by layers appropriate to belt]
 
-**Variants**:
-- **SGD**: Stochastic gradient descent (mini-batch updates)
-- **Momentum**: Accumulates velocity to escape local minima
-- **Adam**: Adaptive learning rates per parameter
+## You're Ready
+
+You now understand:
+- [Key point 1]
+- [Key point 2]
+
+→ Return to [source notebook]
 ```
-
-**Guidelines:**
-- Introduce proper terminology
-- Discuss complexity and tradeoffs
-- Connect to standard implementations
-- Mention practical engineering concerns
-
-### Layer 4: Mathematical Formalism
-
-Rigorous notation, definitions, proofs where appropriate.
-
-```markdown
-## Mathematical Formulation
-
-**Definition**: Let f: ℝⁿ → ℝ be differentiable. The gradient of f at x is:
-
-$$\nabla f(x) = \left[ \frac{\partial f}{\partial x_1}, \ldots, \frac{\partial f}{\partial x_n} \right]^T$$
-
-**Theorem (Gradient points in direction of steepest ascent)**:
-For any unit vector u, the directional derivative satisfies:
-
-$$D_u f(x) = \nabla f(x) \cdot u \leq \|\nabla f(x)\|$$
-
-with equality when u = ∇f(x) / ‖∇f(x)‖.
-
-**Proof**: By Cauchy-Schwarz, |∇f · u| ≤ ‖∇f‖‖u‖ = ‖∇f‖. ∎
-```
-
-**Guidelines:**
-- Use proper LaTeX notation
-- Include definitions before theorems
-- Provide proof sketches for key results
-- This layer is for building mathematical maturity
-
-## Notebook Structure
-
-### Required Sections
-
-1. **Title & Metadata** (cell 1: markdown)
-   ```markdown
-   # [Number][Letter]: [Title]
-
-   **Week N, Day(s) X-Y** | [Module Name]
-
-   **Prerequisites**: [Prior notebooks]
-
-   ---
-
-   ## Learning Objectives
-
-   By the end of this notebook, you will be able to:
-
-   - [ ] [Objective 1]
-   - [ ] [Objective 2]
-
-   ---
-   ```
-
-2. **Imports** (cell 2: code)
-   ```python
-   # Standard library
-   from pathlib import Path
-
-   # Core
-   import numpy as np
-   import torch
-   import matplotlib.pyplot as plt
-
-   # Config
-   plt.style.use('seaborn-v0_8-whitegrid')
-   %matplotlib inline
-   ```
-
-3. **Core Content** (multiple cells)
-   - Organize by concept
-   - Each concept gets all four layers
-   - Use `---` separators between major sections
-
-4. **Exercises** (markdown + code)
-   ```markdown
-   ## Exercise N: [Title]
-
-   [Description of what to implement]
-
-   **Hint**: [Optional hint]
-   ```
-   ```python
-   def exercise_n():
-       """
-       [Docstring with clear spec]
-       """
-       # TODO: Implement this
-       pass
-
-   # Test
-   result = exercise_n()
-   print(f"Expected: [X], Got: {result}")
-   ```
-
-5. **Why This Matters** (markdown)
-   - Connection to curriculum arc
-   - Real-world applications
-   - What this enables later
-
-6. **Resources** (markdown)
-   - External links (videos, papers, docs)
-   - Wiki/glossary references
-   - Optional deep dives
-
-7. **Reflection Questions** (markdown)
-   - Conceptual check-ins
-   - "What would happen if..."
-   - Bridge to next notebook
-
-8. **Next Up** (markdown)
-   - Brief preview
-   - Link to next notebook
 
 ## Code Cell Guidelines
 
@@ -582,6 +802,7 @@ with equality when u = ∇f(x) / ‖∇f(x)‖.
 - Prefer explicit over implicit
 - Use type hints in function signatures
 - Include docstrings for exercise functions
+- Solutions in collapsed format (visual box)
 
 ## Adaptation Based on Learner Profile
 
@@ -589,9 +810,19 @@ From the curriculum brief, adjust:
 
 - **Visual learner**: More plots, diagrams, animations
 - **Kinesthetic learner**: More interactive exercises, building things
-- **Formal learner**: Emphasize Layer 4, include more proofs
-- **ADHD considerations**: Add time estimates, escape hatches, frequent wins
-- **Math anxiety**: Longer Layer 1-2, gentler ramp to Layer 4
+- **Formal learner**: Emphasize Depth notebooks, include more proofs
+- **ADHD considerations**:
+  - Add time estimates
+  - Clear stopping points
+  - Frequent wins
+  - Engaging narrative hooks
+  - Short motivation hooks that fire the start engine
+  - Mermaid maps so you always know where you are
+  - Optional depth rabbit holes for hyperfocus sessions
+- **Math anxiety**:
+  - Longer L0-L2 in Core
+  - Gentler ramp in Depth
+  - "Let's fix that" confidence for proofs
 
 ---
 
@@ -605,24 +836,43 @@ Typical setup (adjust based on curriculum brief):
 - Core: numpy, scipy, torch
 - Viz: matplotlib, seaborn, plotly, ipywidgets
 - ML: sentence-transformers, transformers, hdbscan, umap-learn
+- Stats: pymc, numpyro, arviz (Arc 2+)
 
 ## Directory Structure
 
 ```
-project/
+aegir/
 ├── notebooks/
-│   ├── 00-setup/
-│   ├── 01-[module]/
-│   ├── 02-[module]/
-│   └── ...
+│   ├── arc-0-probabilistic-foundations/
+│   │   ├── module-0.1-[topic]/
+│   │   │   ├── 0.1-[topic]-core.ipynb
+│   │   │   ├── 0.1-[topic]-depth.ipynb
+│   │   │   └── hero-intro.png
+│   │   ├── module-0.2-[topic]/
+│   │   │   └── ...
+│   │   └── ...
+│   ├── arc-1-linear-algebra-calculus/
+│   │   └── ...
+│   └── supplements/
+│       ├── prereq-[topic].ipynb
+│       └── ...
 ├── syllabus/
-│   ├── README.md          ← Course map
+│   ├── README.md              ← Course map (arc overview)
 │   ├── curriculum-brief.yaml  ← Elicitation output
-│   ├── week-00-onboarding.md
-│   ├── week-01-[theme].md
+│   └── arcs/
+│       ├── README.md          ← Arc overview + design principles
+│       ├── curriculum-brief.yaml
+│       ├── arc-0-probabilistic-foundations.md
+│       ├── arc-1-linear-algebra-calculus.md
+│       └── ...
+├── sources/
+│   ├── books.md
+│   ├── videos.md
 │   └── ...
 ├── wiki/
-│   └── glossary.md
+│   └── ...
+├── archive/
+│   └── v1-week-based/        ← Preserved original content
 └── pyproject.toml
 ```
 
@@ -630,8 +880,11 @@ project/
 
 - **Course map**: `syllabus/README.md`
 - **Curriculum brief**: `syllabus/curriculum-brief.yaml`
-- **Week syllabi**: `syllabus/week-NN-[theme].md`
-- **Notebooks**: `notebooks/NN-[module]/NNx-[name].ipynb`
+- **Arc overview**: `syllabus/arcs/README.md`
+- **Arc syllabi**: `syllabus/arcs/arc-N-[theme].md`
+- **Core notebooks**: `notebooks/arc-N-[theme]/module-N.M-[topic]/N.M-[topic]-core.ipynb`
+- **Depth notebooks**: `notebooks/arc-N-[theme]/module-N.M-[topic]/N.M-[topic]-depth.ipynb`
+- **Supplements**: `notebooks/supplements/prereq-[topic].ipynb`
 
 Support explicit path override: "generate to [path]"
 
@@ -642,23 +895,32 @@ Support explicit path override: "generate to [path]"
 ## Course Level
 - [ ] All five elicitation dimensions covered
 - [ ] Curriculum brief is complete and specific
-- [ ] Week sequence has clear dependencies
-- [ ] Milestones are concrete and achievable
-- [ ] Time budget is realistic
+- [ ] Arc sequence has clear dependencies (and concurrency where possible)
+- [ ] Each arc has a concrete destination (what you can DO)
+- [ ] Publication checkpoints defined per arc
 
-## Week Level
-- [ ] Goals tie to course outcomes
-- [ ] Day breakdown fits time constraints
-- [ ] Milestone is tangible
-- [ ] Connections to prior/next weeks explicit
+## Arc Level
+- [ ] Destination ties to course outcomes
+- [ ] Module breakdown is sequential within the arc
+- [ ] Each module has motivation → implementation → theory backfill → exercises
+- [ ] At least 2 publication checkpoints with type/audience/template
+- [ ] Implementation targets are specific (real files, real features)
+- [ ] Resources reference specific chapters/sections, not whole books
+- [ ] Estimated sessions range is realistic
 
-## Notebook Level
+## Module Lesson (Notebook) Level
+- [ ] Compelling problem thread (cumulative, real scenario)
 - [ ] All code cells run in sequence
-- [ ] Every concept has all four layers
-- [ ] Visualizations present for major concepts
+- [ ] Core notebook is self-contained (L0+L1+L2)
+- [ ] Depth notebook declares prereqs
+- [ ] Narrative intro is engaging and fun
+- [ ] Narrative outro celebrates and bridges to next module
+- [ ] Publication-track exercises marked with [PUBLISH]
 - [ ] Exercises have clear success criteria
-- [ ] "Why This Matters" connects to arc
-- [ ] Resources include relevant links
+- [ ] Solutions provided in collapsed format
+- [ ] Visual markers follow style guide (no emoji)
+- [ ] Voice matches belt level (peer vs internal monologue)
+- [ ] Links to arc's implementation targets where applicable
 
 ---
 
@@ -672,16 +934,16 @@ Detect revision intent from user input:
 
 **Course-level revision:**
 - "Update the curriculum to include..."
-- "Add a week on [topic]"
-- "Remove the [topic] module"
-- "Reorder weeks to put [X] before [Y]"
+- "Add an arc on [topic]"
+- "Remove the [topic] arc"
+- "Reorder arcs to put [X] before [Y]"
 - "The learner profile has changed — they now..."
 
-**Week-level revision:**
-- "Update week N to add [topic]"
-- "Split day 3 into two days"
-- "Move [notebook] to week N+1"
-- "Change the milestone to [new milestone]"
+**Arc-level revision:**
+- "Update arc N to add a module on [topic]"
+- "Split module N.3 into two modules"
+- "Move [module] to arc N+1"
+- "Change the publication checkpoint to [new target]"
 - "Add an exercise on [topic]"
 
 **Notebook-level revision:**
@@ -698,9 +960,9 @@ Detect revision intent from user input:
 Read the artifact being revised and its context:
 
 ```
-Course revision → Read: curriculum-brief.yaml, README.md (course map)
-Week revision   → Read: week syllabus, adjacent weeks, course map
-Notebook revision → Read: notebook, week syllabus, learner profile
+Course revision  → Read: curriculum-brief.yaml, syllabus/README.md, syllabus/arcs/README.md
+Arc revision     → Read: arc syllabus, adjacent arcs, course map
+Notebook revision → Read: notebook, arc syllabus, learner profile
 ```
 
 ### Step 2: Identify the Delta
@@ -731,7 +993,7 @@ For each change type:
 **Structural changes:**
 - Map all affected sections
 - Update cross-references
-- Recalculate time budgets if applicable
+- Recalculate module numbering if applicable
 
 **Subtractive changes:**
 - Check for downstream dependencies
@@ -756,13 +1018,13 @@ After editing, report downstream impacts:
 **Changed**: [what was modified]
 
 **Downstream impacts to review**:
-- [ ] Week N+1 references removed content
-- [ ] Notebook 3b depends on removed exercise
-- [ ] Time budget now exceeds constraint
+- [ ] Arc N+1 references removed content
+- [ ] Module 0.3 depends on removed exercise
+- [ ] Publication checkpoint no longer aligns
 
 **No action needed**:
-- Week N-1 (independent)
-- Notebooks 1a-2c (no dependencies on changed content)
+- Arc N-1 (independent)
+- Modules 0.1-0.2 (no dependencies on changed content)
 ```
 
 ## Cascade Rules by Level
@@ -771,21 +1033,21 @@ After editing, report downstream impacts:
 
 | Change | Cascades To |
 |--------|-------------|
-| Add week | Course map, week numbering |
-| Remove week | Course map, downstream week references |
-| Reorder weeks | All week files (numbering), cross-references |
+| Add arc | Course map, arc numbering, dependency graph |
+| Remove arc | Course map, downstream arc prerequisites |
+| Reorder arcs | All arc files (numbering), prerequisite chains |
 | Update learner profile | Potentially all notebooks (adaptation) |
-| Change capstone | Capstone track, final weeks |
+| Change publication goals | Publication checkpoints across arcs |
 
-### Week-Level Changes
+### Arc-Level Changes
 
 | Change | Cascades To |
 |--------|-------------|
-| Add notebook | Week overview table, day numbering |
-| Remove notebook | Week overview, downstream notebook references |
-| Reorder days | Notebook filenames, cross-references |
-| Change milestone | Milestone section, "Why This Matters" in notebooks |
-| Update time budget | Overview table, may require content cuts |
+| Add module | Arc module list, module numbering |
+| Remove module | Arc module list, downstream module references |
+| Reorder modules | Module numbering, cross-references |
+| Change publication checkpoint | Arc publication table, notebook [PUBLISH] markers |
+| Update implementation target | Module exercises, notebook code |
 
 ### Notebook-Level Changes
 
